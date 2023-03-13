@@ -1,0 +1,68 @@
+name: magic_sign
+version: 1.0.0+1
+publish_to: none
+description: Maigc Sign
+environment: 
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+
+  cupertino_icons: ^1.0.5
+  get: 4.6.5
+  intl: any
+  gap:
+  flutter_svg:
+  simple_animations:
+  modal_bottom_sheet:
+  curved_navigation_bar:
+  carousel_slider:
+  better_player:
+  camera: ^0.10.3+2
+  fluttertoast:
+  dio: ^5.0.2
+  retrofit: ^4.0.1
+  logger: any  #for logging purpose
+  freezed_annotation:
+  json_annotation:
+  auto_size_text:
+  lottie:
+  permission_handler:
+  bot_toast:
+  shared_preferences:
+  webview_flutter:
+  pretty_dio_logger:
+  extended_image:
+#  image_picker: 0.8.7
+
+  firebase_core:
+  firebase_auth:
+  google_sign_in:
+  flutter_signin_button:
+  intro_slider:
+
+  flutter:
+    sdk: flutter
+  get_cli: ^1.7.1
+
+dev_dependencies: 
+  flutter_lints: any
+  flutter_test: 
+    sdk: flutter
+  build_runner: any
+  flutter_gen_runner: any
+  retrofit_generator:
+  json_serializable:
+  freezed:
+  flutter_launcher_icons: ^0.12.0
+
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - assets/image/
+    - assets/svg/
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/image/ic_launcher.jpg"
+  min_sdk_android: 21
