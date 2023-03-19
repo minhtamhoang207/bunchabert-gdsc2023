@@ -7,8 +7,7 @@ import '../../../../data/models/news.dart';
 import '../../../../domain/usecases/news_usecase.dart';
 import '../../../../gen/assets.gen.dart';
 
-class HomeController extends GetxController with StateMixin<HomeController>{
-
+class HomeController extends GetxController with StateMixin<HomeController> {
   HomeController({required this.newsUseCases});
   NewsUseCases newsUseCases;
 
@@ -31,20 +30,17 @@ class HomeController extends GetxController with StateMixin<HomeController>{
 
   @override
   void onInit() async {
-    Future.sync(() => {
-      currentUser = _googleSignIn.currentUser,
-      getListNews()
-    });
+    Future.sync(() => {currentUser = _googleSignIn.currentUser, getListNews()});
     super.onInit();
   }
 
   getListNews() async {
     try {
       change(this, status: RxStatus.loading());
-      final response =  await newsUseCases.getListNews(topic: 'Technology');
-      news.value = response.articles??[];
+      final response = await newsUseCases.getListNews(topic: 'Technology');
+      news.value = response.articles ?? [];
       change(this, status: RxStatus.success());
-    } catch (e){
+    } catch (e) {
       log(e.toString());
       change(this, status: RxStatus.error(e.toString()));
     }
@@ -59,5 +55,4 @@ class HomeController extends GetxController with StateMixin<HomeController>{
   void onClose() {
     super.onClose();
   }
-
 }

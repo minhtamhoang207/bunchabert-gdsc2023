@@ -15,5 +15,4 @@ abstract class AuthService {
 
   @POST('/auth/login')
   Future<BaseResponse> login(@Body() UserAuth userAuth);
-
 }

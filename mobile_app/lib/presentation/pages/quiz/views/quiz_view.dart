@@ -79,8 +79,10 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
   }
 
   void _setupDataSource() async {
-    BetterPlayerDataSource dataSource = BetterPlayerDataSource.network(
-        controller.listQuiz[widget.index].attachment ?? '');
+    BetterPlayerDataSource dataSource = BetterPlayerDataSource(
+      BetterPlayerDataSourceType.network,
+      controller.listQuiz[widget.index].attachment ?? '',
+    );
     _betterPlayerController.setupDataSource(dataSource);
   }
 
@@ -106,11 +108,13 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
                 return InkWell(
                     onTap: () {
                       setState(() {
-                        controller.listAnswer.value[widget.index] = PickedAnswer(
-                            quiz: controller.listQuiz[widget.index],
-                            correct: controller.listQuiz[widget.index].answers?[index].isCorrect??false,
-                            pickedAnswer: index
-                        );
+                        controller.listAnswer.value[widget.index] =
+                            PickedAnswer(
+                                quiz: controller.listQuiz[widget.index],
+                                correct: controller.listQuiz[widget.index]
+                                        .answers?[index].isCorrect ??
+                                    false,
+                                pickedAnswer: index);
                       });
                     },
                     borderRadius: BorderRadius.circular(8),
@@ -118,38 +122,43 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 8),
                         decoration: BoxDecoration(
-                            color: index == controller.listAnswer.value[widget.index].pickedAnswer
+                            color: index ==
+                                    controller.listAnswer.value[widget.index]
+                                        .pickedAnswer
                                 ? const Color(0xFF4C6ED7)
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all()),
                         child: Center(
                             child: SingleChildScrollView(
-                              child: AutoSizeText(
-                                controller.listQuiz[widget.index].answers?[index].content ?? '',
-                                maxLines: null,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                    color: index == controller.listAnswer.value[widget.index].pickedAnswer?
-                                        Colors.white:
-                                        Colors.black
-                                ),
-                              ),
-                            )
-                        )
-                    )
-                );
+                          child: AutoSizeText(
+                            controller.listQuiz[widget.index].answers?[index]
+                                    .content ??
+                                '',
+                            maxLines: null,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: index ==
+                                        controller.listAnswer
+                                            .value[widget.index].pickedAnswer
+                                    ? Colors.white
+                                    : Colors.black),
+                          ),
+                        ))));
               },
             ),
           )
         ],
       ),
       bottomNavigationBar: GestureDetector(
-        onTap: (){
-          widget.index == controller.listQuiz.length - 1?
-          _showDialog(controller.listQuiz.length, controller.getCorrectAnswer()):
-          controller.pageController.nextPage(duration: const Duration(milliseconds: 200), curve: Curves.bounceIn);
+        onTap: () {
+          widget.index == controller.listQuiz.length - 1
+              ? _showDialog(
+                  controller.listQuiz.length, controller.getCorrectAnswer())
+              : controller.pageController.nextPage(
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.bounceIn);
         },
         child: Container(
           margin: const EdgeInsets.all(20),
@@ -159,8 +168,9 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
             color: const Color(0xFF4C6ED7),
           ),
           child: Text(
-            widget.index == controller.listQuiz.length - 1?
-            'Complete':'Continue',
+            widget.index == controller.listQuiz.length - 1
+                ? 'Complete'
+                : 'Continue',
             textAlign: TextAlign.center,
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
@@ -170,7 +180,7 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
     );
   }
 
-  _showDialog(int total, int correct){
+  _showDialog(int total, int correct) {
     showGeneralDialog(
       context: context,
       barrierColor: Colors.black12.withOpacity(0.9), // Background color
@@ -182,7 +192,8 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Lottie.asset(Assets.image.icDone,
+              Lottie.asset(
+                Assets.image.icDone,
                 width: Get.width - 100,
                 height: Get.width - 100,
               ),
@@ -190,18 +201,22 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
                 '$correct/$total',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: Color(0xFF4C6ED7), fontWeight: FontWeight.bold, fontSize: 30),
+                    color: Color(0xFF4C6ED7),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
               ),
               const Gap(20),
               const Text(
                 'You have complete the quiz!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Color(0xFF4C6ED7), fontWeight: FontWeight.bold, fontSize: 20),
+                    color: Color(0xFF4C6ED7),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
               ),
               const Gap(40),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Get.back();
                 },
                 child: Container(
@@ -216,7 +231,9 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
                       'Go back',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
                     ),
                   ),
                 ),

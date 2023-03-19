@@ -5,8 +5,8 @@ import 'package:magic_sign/data/models/course.dart';
 
 import '../../../../domain/usecases/course_usecase.dart';
 
-class LearningController extends GetxController with StateMixin<LearningController> {
-
+class LearningController extends GetxController
+    with StateMixin<LearningController> {
   LearningController({required this.courseUseCase});
   CourseUseCase courseUseCase;
   Rx<List<Course>> course = Rx<List<Course>>([]);
@@ -24,7 +24,7 @@ class LearningController extends GetxController with StateMixin<LearningControll
       change(this, status: RxStatus.loading());
       course.value = await courseUseCase.getCourse();
       change(this, status: RxStatus.success());
-    } catch (e){
+    } catch (e) {
       log(e.toString());
       change(this, status: RxStatus.error(e.toString()));
     }

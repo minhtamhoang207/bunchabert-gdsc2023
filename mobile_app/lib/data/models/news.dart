@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-List<dynamic> newsFromJson(String str) => List<dynamic>.from(json.decode(str).map((x) => x));
+List<dynamic> newsFromJson(String str) =>
+    List<dynamic>.from(json.decode(str).map((x) => x));
 
-String newsToJson(List<dynamic> data) => json.encode(List<dynamic>.from(data.map((x) => x)));
+String newsToJson(List<dynamic> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x)));
 
 class News {
   News({
@@ -16,10 +18,13 @@ class News {
   List<Article>? articles;
 
   factory News.fromJson(Map<String, dynamic> json) => News(
-    status: json["status"],
-    totalResults: json["totalResults"],
-    articles: json["articles"] == null ? null : List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
-  );
+        status: json["status"],
+        totalResults: json["totalResults"],
+        articles: json["articles"] == null
+            ? null
+            : List<Article>.from(
+                json["articles"].map((x) => Article.fromJson(x))),
+      );
 }
 
 class Article {
@@ -44,15 +49,17 @@ class Article {
   String? content;
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-    source: Source.fromJson(json["source"]),
-    author: json["author"],
-    title: json["title"],
-    description: json["description"],
-    url: json["url"],
-    urlToImage: json["urlToImage"],
-    publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
-    content: json["content"],
-  );
+        source: Source.fromJson(json["source"]),
+        author: json["author"],
+        title: json["title"],
+        description: json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"],
+        publishedAt: json["publishedAt"] == null
+            ? null
+            : DateTime.parse(json["publishedAt"]),
+        content: json["content"],
+      );
 }
 
 class Source {
@@ -65,7 +72,7 @@ class Source {
   String? name;
 
   factory Source.fromJson(Map<String, dynamic> json) => Source(
-    id: json["id"],
-    name: json["name"],
-  );
+        id: json["id"],
+        name: json["name"],
+      );
 }

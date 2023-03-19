@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:magic_sign/data/models/news.dart';
+
 import '../../../../config/routes/app_pages.dart';
 import '../../../../core/utils/date_time.dart';
 import '../../dash_board/controllers/dash_board_controller.dart';
@@ -82,6 +83,31 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ),
+          SliverPadding(
+            padding: const EdgeInsets.all(0),
+            sliver: controller.obx(
+                (state) => SliverList(
+                    key: GlobalKey(),
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return _lastestNewsItem(
+                            index, controller.news.value[index]);
+                      },
+                      childCount: controller.news.value.length >= 12
+                          ? 12
+                          : controller.news.value.length,
+                    )),
+                onLoading: const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                onError: (e) => const SliverToBoxAdapter(
+                      child: Center(
+                        child: Text('Something went wrong'),
+                      ),
+                    )),
+          )
         ],
       )),
     );
@@ -97,9 +123,10 @@ Widget _header(HomeController controller) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello, ${controller.currentUser?.displayName??''}',
+            Text('Hello, ${controller.currentUser?.displayName ?? ''}',
                 maxLines: 1,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
             const Gap(5),
             const Text('How do you feel today?',
                 maxLines: 1,
@@ -111,8 +138,7 @@ Widget _header(HomeController controller) {
         ),
       ),
       CircleAvatar(
-        backgroundImage: NetworkImage(
-            controller.currentUser?.photoUrl?? ''),
+        backgroundImage: NetworkImage(controller.currentUser?.photoUrl ?? ''),
       ),
       const Gap(15),
     ],
@@ -132,15 +158,15 @@ Widget _divider() {
 Widget _feature(int index) {
   final controller = Get.find<HomeController>();
   return GestureDetector(
-    onTap: (){
-      if(index == 0){
+    onTap: () {
+      if (index == 0) {
         Get.toNamed(Routes.TEXT_TO_SIGN);
-      } else if(index == 1){
+      } else if (index == 1) {
         Get.find<DashBoardController>().setIndex(index: 2);
-      } else if(index == 2){
+      } else if (index == 2) {
         Get.find<LearningController>().onInit();
         Get.find<DashBoardController>().setIndex(index: 3);
-      } else if(index == 3){
+      } else if (index == 3) {
         Get.find<DashBoardController>().setIndex(index: 1);
       }
     },
@@ -228,6 +254,7 @@ Widget _lastestNewsItem(int index, Article? article) {
                 height: Get.width / 3,
                 width: Get.width / 2 - 40,
                 decoration: BoxDecoration(
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -261,8 +288,7 @@ Widget _lastestNewsItem(int index, Article? article) {
                     ),
                     const Gap(5),
                     Expanded(
-                      child: Text(
-                          article?.title??'',
+                      child: Text(article?.title ?? '',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -279,7 +305,8 @@ Widget _lastestNewsItem(int index, Article? article) {
                           const Gap(10),
                           Expanded(
                               child: Text(
-                                  AppDateTime.formatDateTypeWeekDay(article?.publishedAt),
+                                  AppDateTime.formatDateTypeWeekDay(
+                                      article?.publishedAt),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13,

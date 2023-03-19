@@ -10,7 +10,7 @@ class LoginBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<LoginController>(
-          () => LoginController(authUseCase: Get.find()),
+      () => LoginController(authUseCase: Get.find()),
     );
     Get.lazyPut(() => AuthRepoImpl(authService: AuthService(Get.find<Dio>())));
     Get.lazyPut(() => AuthUseCase(authRepository: Get.find<AuthRepoImpl>()));

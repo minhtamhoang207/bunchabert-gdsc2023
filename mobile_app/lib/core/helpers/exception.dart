@@ -47,8 +47,7 @@ ErrorEntity createErrorEntity(DioError error) {
             return ErrorEntity(code: errCode, message: errorMessage);
 
           case 505:
-            return ErrorEntity(
-                code: errCode, message: errorMessage);
+            return ErrorEntity(code: errCode, message: errorMessage);
 
           default:
             {
@@ -61,7 +60,7 @@ ErrorEntity createErrorEntity(DioError error) {
       }
 
     default:
-      return ErrorEntity(code: -1, message: error.message?? '');
+      return ErrorEntity(code: -1, message: error.message ?? '');
   }
 }
 

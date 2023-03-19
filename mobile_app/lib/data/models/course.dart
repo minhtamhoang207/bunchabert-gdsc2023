@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'course.freezed.dart';
 part 'course.g.dart';
 
-
 @freezed
 class Course with _$Course {
   factory Course({
@@ -44,8 +43,7 @@ class Quiz with _$Quiz {
 class Answer with _$Answer {
   const factory Answer({
     String? content,
-    @JsonKey(name: 'is_correct')
-    bool? isCorrect,
+    @JsonKey(name: 'is_correct') bool? isCorrect,
   }) = _Answer;
 
   factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);

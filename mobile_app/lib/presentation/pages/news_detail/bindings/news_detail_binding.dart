@@ -12,7 +12,9 @@ class NewsDetailBinding extends Bindings {
     Get.lazyPut<NewsDetailController>(
       () => NewsDetailController(signLanguageUseCases: Get.find()),
     );
-    Get.lazyPut(() => SignLanguageRepoImpl(signLanguageService: SignLanguageService(Get.find<Dio>())));
-    Get.lazyPut(() => SignLanguageUseCases(signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
+    Get.lazyPut(() => SignLanguageRepoImpl(
+        signLanguageService: SignLanguageService(Get.find<Dio>())));
+    Get.lazyPut(() => SignLanguageUseCases(
+        signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
   }
 }

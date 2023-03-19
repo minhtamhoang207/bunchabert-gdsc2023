@@ -173,12 +173,11 @@ class _LoginScreenState extends State<LoginScreen>
     ));
   }
 
-  Widget _normalLoginButton(){
+  Widget _normalLoginButton() {
     return InkWell(
       onTap: () async => await controller.login(),
       child: Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: 8, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3),
             gradient: const LinearGradient(colors: [
@@ -196,27 +195,23 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
-  Widget _loginMethodDivider(){
+  Widget _loginMethodDivider() {
     return Row(
       children: const [
         Expanded(
-          child: Divider(
-            thickness: 2,
-          )
-        ),
+            child: Divider(
+          thickness: 2,
+        )),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Text('OR',
-          style: TextStyle(
-           color: AppColor.black,
-           fontWeight: FontWeight.bold
-          )),
+              style: TextStyle(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
         ),
         Expanded(
             child: Divider(
-              thickness: 2,
-            )
-        ),
+          thickness: 2,
+        )),
       ],
     );
   }

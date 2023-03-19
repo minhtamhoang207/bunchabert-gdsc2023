@@ -4,26 +4,22 @@ import 'package:get/get.dart';
 import '../../../../data/models/course.dart';
 
 class QuizController extends GetxController {
-
   PageController pageController = PageController();
-  final List<Quiz> listQuiz = Get.arguments??[];
+  final List<Quiz> listQuiz = Get.arguments ?? [];
   final Rx<List<PickedAnswer>> listAnswer = Rx<List<PickedAnswer>>([]);
 
   @override
   void onInit() {
-    for(var item in listQuiz){
-      listAnswer.value.add(
-        PickedAnswer(quiz: item, correct: false)
-      );
+    for (var item in listQuiz) {
+      listAnswer.value.add(PickedAnswer(quiz: item, correct: false));
     }
     super.onInit();
   }
 
-  int getCorrectAnswer(){
+  int getCorrectAnswer() {
     int count = 0;
-    for(var item in listAnswer.value){
-      print(item.toString());
-      if(item.correct == true) count += 1;
+    for (var item in listAnswer.value) {
+      if (item.correct == true) count += 1;
     }
     return count;
   }

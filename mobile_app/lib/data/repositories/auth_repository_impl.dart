@@ -5,9 +5,7 @@ import 'package:magic_sign/data/models/base_response.dart';
 import 'package:magic_sign/data/models/user_sign_up.dart';
 import 'package:magic_sign/domain/repositories/auth_repository.dart';
 
-
 class AuthRepoImpl implements AuthRepository {
-
   AuthRepoImpl({required this.authService});
   AuthService authService;
 

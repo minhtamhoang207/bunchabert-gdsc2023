@@ -1,6 +1,9 @@
-import 'package:dio/dio.dart';
+import 'dart:io';
+
+import 'package:magic_sign/data/models/image_to_sign.dart';
 
 abstract class SignLanguageRepository {
   Future<List<int>> getSignVideo({required String txt});
-  Future<List<int>> getSignVideoFromImg({required MultipartFile fileUpload});
+  Future<ImageToSign> getSignVideoFromImg({required File fileUpload});
+  Future<ImageToSign> sign2text({required File fileUpload});
 }

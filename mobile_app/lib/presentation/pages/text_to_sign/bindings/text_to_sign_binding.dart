@@ -10,9 +10,11 @@ class TextToSignBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<TextToSignController>(
-          () => TextToSignController(signLanguageUseCases: Get.find()),
+      () => TextToSignController(signLanguageUseCases: Get.find()),
     );
-    Get.lazyPut(() => SignLanguageRepoImpl(signLanguageService: SignLanguageService(Get.find<Dio>())));
-    Get.lazyPut(() => SignLanguageUseCases(signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
+    Get.lazyPut(() => SignLanguageRepoImpl(
+        signLanguageService: SignLanguageService(Get.find<Dio>())));
+    Get.lazyPut(() => SignLanguageUseCases(
+        signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
   }
 }

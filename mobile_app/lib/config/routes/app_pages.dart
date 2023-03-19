@@ -94,7 +94,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TEXT_TO_SIGN,
-      page: () => const TextToSignView(),
+      page: () => TextToSignView(),
       binding: TextToSignBinding(),
     ),
     GetPage(

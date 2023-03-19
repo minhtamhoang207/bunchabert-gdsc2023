@@ -9,8 +9,11 @@ part of 'course_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _CourseService implements CourseService {
-  _CourseService(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://musketeer-api.tk/api/v1';
+  _CourseService(
+    this._dio, {
+    this.baseUrl,
+  }) {
+    baseUrl ??= 'http://35.198.235.109/api/v1';
   }
 
   final Dio _dio;
@@ -22,13 +25,20 @@ class _CourseService implements CourseService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<Course>>(
-            Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/courses',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Course>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/courses',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => Course.fromJson(i as Map<String, dynamic>))
         .toList();

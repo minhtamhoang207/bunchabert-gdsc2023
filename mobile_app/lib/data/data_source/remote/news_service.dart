@@ -8,10 +8,8 @@ class NewsService {
   Dio dio;
 
   Future<News> getListNews(String topic) async {
-    final response = await dio.get(
-        '$kNewsURL/news',
-        queryParameters: {'q': topic}
-    );
+    final response =
+        await dio.get('$kNewsURL/news', queryParameters: {'q': topic});
     return News.fromJson(response.data[0]);
   }
 }

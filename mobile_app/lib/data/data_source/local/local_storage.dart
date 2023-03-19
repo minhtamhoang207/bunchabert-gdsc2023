@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:magic_sign/core/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,6 @@ class LocalStorage {
   }
 
   clearAll() async {
-   await sharedPreferences.clear();
+    await sharedPreferences.clear();
   }
 }

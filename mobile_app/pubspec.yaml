@@ -7,7 +7,7 @@ environment:
 
 dependencies:
 
-  cupertino_icons: ^1.0.5
+  cupertino_icons: 1.0.5
   get: 4.6.5
   intl: any
   gap:
@@ -16,33 +16,46 @@ dependencies:
   modal_bottom_sheet:
   curved_navigation_bar:
   carousel_slider:
-  better_player:
-  camera: ^0.10.3+2
+  better_player: 0.0.83
+  camera: 0.10.3+2
   fluttertoast:
-  dio: ^5.0.2
-  retrofit: ^4.0.1
+  dio: 5.0.2
+  retrofit: 4.0.1
   logger: any  #for logging purpose
   freezed_annotation:
   json_annotation:
   auto_size_text:
   lottie:
-  permission_handler:
+  permission_handler: 10.2.0
   bot_toast:
   shared_preferences:
   webview_flutter:
   pretty_dio_logger:
   extended_image:
-#  image_picker: 0.8.7
 
+  #  image_picker: 0.8.7
   firebase_core:
   firebase_auth:
   google_sign_in:
   flutter_signin_button:
   intro_slider:
+  flutter_html: 3.0.0-alpha.3
+  google_speech: 2.1.2
+  path_provider: 2.0.13
+  record: 4.4.4
+  image_picker: 0.8.7
+  audioplayers: 3.0.1
+  wavenet: 2.0.5
+  flutter_dotenv: 5.0.2
+  text_selection_controls:
+    git:
+      url: https://github.com/tinyjin/flutter_text_selection_controls
+      ref: master
+
 
   flutter:
     sdk: flutter
-  get_cli: ^1.7.1
+  get_cli:
 
 dev_dependencies: 
   flutter_lints: any
@@ -53,7 +66,7 @@ dev_dependencies:
   retrofit_generator:
   json_serializable:
   freezed:
-  flutter_launcher_icons: ^0.12.0
+  flutter_launcher_icons:
 
 
 flutter: 
@@ -61,6 +74,8 @@ flutter:
   assets:
     - assets/image/
     - assets/svg/
+    - assets/
+    - .env
 
 flutter_icons:
   android: "launcher_icon"

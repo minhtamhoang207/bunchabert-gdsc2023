@@ -17,95 +17,100 @@ class ExploreView extends GetView<ExploreController> {
     return SafeArea(
       child: Scaffold(
           body: Scrollable(
-            viewportBuilder: (BuildContext context, ViewportOffset position) =>
-                Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20, bottom: 30),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Latest News',
-                          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 40,
-                        width: Get.width,
-                        child: ListView.builder(
-                          itemCount: controller.topic.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Obx(() => _topic(index, controller.topic[index]));
-                          },
-                        )),
-                    const Gap(20),
-                    Expanded(
-                        child: controller.obx(
-                                (state) => RefreshIndicator(
-                              onRefresh: () => controller.getListNews(),
-                              child: CustomScrollView(
-                                slivers: [
-                                  SliverToBoxAdapter(
-                                    child: controller.news.value.isEmpty?
-                                    const SizedBox():Padding(
-                                      padding:
-                                      const EdgeInsets.only(top: 30, bottom: 50),
-                                      child: CarouselSlider.builder(
-                                          itemCount:
-                                          controller.news.value.length >= 15
-                                              ? 15
-                                              : controller.news.value.length,
-                                          itemBuilder: (BuildContext context,
-                                              int itemIndex, int pageViewIndex) =>
-                                              _lastestNewsItem(
-                                                  itemIndex,
-                                                  pageViewIndex,
-                                                  controller.news.value[itemIndex]),
-                                          options: CarouselOptions(
-                                            aspectRatio: 4/2.1,
-                                            initialPage: 0,
-                                            autoPlay: true,
-                                            enlargeStrategy:
-                                            CenterPageEnlargeStrategy.height,
-                                            enlargeCenterPage: true,
-                                            // padEnds: false,
-                                            autoPlayCurve: Curves.decelerate,
-                                            viewportFraction: 0.8,
-                                            scrollDirection: Axis.horizontal,
-                                          )),
-                                    ),
-                                  ),
-                                  SliverList(
-                                      delegate: SliverChildBuilderDelegate(
-                                            (BuildContext context, int index) {
-                                          return SizedBox(
-                                            width: Get.width,
-                                            height: Get.width / 2,
-                                            child: _topicItem(
-                                                index, controller.news.value[index]),
-                                          );
-                                        },
-                                        childCount: controller.news.value.length,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            onLoading: const Center(
-                              child: CircularProgressIndicator.adaptive(),
-                            ),
-                            onError: (error) => Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.error, color: Colors.red, size: 30),
-                                Gap(15),
-                                Text('Something went wrong')
-                              ],
-                            )))
-                  ],
+        viewportBuilder: (BuildContext context, ViewportOffset position) =>
+            Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 30),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Latest News',
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
-          )),
+              ),
+            ),
+            SizedBox(
+                height: 40,
+                width: Get.width,
+                child: ListView.builder(
+                  itemCount: controller.topic.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Obx(() => _topic(index, controller.topic[index]));
+                  },
+                )),
+            const Gap(20),
+            Expanded(
+                child: controller.obx(
+                    (state) => RefreshIndicator(
+                          onRefresh: () => controller.getListNews(),
+                          child: CustomScrollView(
+                            slivers: [
+                              SliverToBoxAdapter(
+                                child: controller.news.value.isEmpty
+                                    ? const SizedBox()
+                                    : Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 30, bottom: 50),
+                                        child: CarouselSlider.builder(
+                                            itemCount: controller
+                                                        .news.value.length >=
+                                                    15
+                                                ? 15
+                                                : controller.news.value.length,
+                                            itemBuilder: (BuildContext context,
+                                                    int itemIndex,
+                                                    int pageViewIndex) =>
+                                                _lastestNewsItem(
+                                                    itemIndex,
+                                                    pageViewIndex,
+                                                    controller
+                                                        .news.value[itemIndex]),
+                                            options: CarouselOptions(
+                                              aspectRatio: 4 / 2.1,
+                                              initialPage: 0,
+                                              autoPlay: true,
+                                              enlargeStrategy:
+                                                  CenterPageEnlargeStrategy
+                                                      .height,
+                                              enlargeCenterPage: true,
+                                              // padEnds: false,
+                                              autoPlayCurve: Curves.decelerate,
+                                              viewportFraction: 0.8,
+                                              scrollDirection: Axis.horizontal,
+                                            )),
+                                      ),
+                              ),
+                              SliverList(
+                                  delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                                  return SizedBox(
+                                    width: Get.width,
+                                    height: Get.width / 2,
+                                    child: _topicItem(
+                                        index, controller.news.value[index]),
+                                  );
+                                },
+                                childCount: controller.news.value.length,
+                              )),
+                            ],
+                          ),
+                        ),
+                    onLoading: const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                    onError: (error) => Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.error, color: Colors.red, size: 30),
+                            Gap(15),
+                            Text('Something went wrong')
+                          ],
+                        )))
+          ],
+        ),
+      )),
     );
   }
 }
@@ -113,10 +118,8 @@ class ExploreView extends GetView<ExploreController> {
 Widget _lastestNewsItem(int itemIndex, int pageIndex, Article? article) {
   return GestureDetector(
     onTap: () {
-      Get.toNamed(Routes.NEWS_DETAIL, arguments:{
-        'heroTag': 'fhero$itemIndex',
-        'article': article
-      });
+      Get.toNamed(Routes.NEWS_DETAIL,
+          arguments: {'heroTag': 'fhero$itemIndex', 'article': article});
     },
     child: Stack(
       children: [
@@ -214,10 +217,8 @@ Widget _topic(int index, String title) {
 Widget _topicItem(int index, Article? article) {
   return GestureDetector(
     onTap: () {
-      Get.toNamed(Routes.NEWS_DETAIL, arguments:{
-        'heroTag': 'hero$index',
-        'article': article
-      });
+      Get.toNamed(Routes.NEWS_DETAIL,
+          arguments: {'heroTag': 'hero$index', 'article': article});
     },
     child: Stack(
       children: [
@@ -236,8 +237,8 @@ Widget _topicItem(int index, Article? article) {
         Container(
           margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.black45.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.black45.withOpacity(0.4),
           ),
         ),
         Padding(

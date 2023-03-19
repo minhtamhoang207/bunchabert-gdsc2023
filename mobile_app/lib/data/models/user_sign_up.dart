@@ -11,5 +11,6 @@ class UserAuth with _$UserAuth {
     required String username,
   }) = _UserAuth;
 
-  factory UserAuth.fromJson(Map<String, dynamic> json) => _$UserAuthFromJson(json);
+  factory UserAuth.fromJson(Map<String, dynamic> json) =>
+      _$UserAuthFromJson(json);
 }

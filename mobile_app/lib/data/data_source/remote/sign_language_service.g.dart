@@ -9,9 +9,12 @@ part of 'sign_language_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _SignLanguageService implements SignLanguageService {
-  _SignLanguageService(this._dio, {this.baseUrl}) {
+  _SignLanguageService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??=
-        'https://5f9e-2405-4802-134-1740-a913-fe77-8d80-e6e.ap.ngrok.io/api/v1';
+        'https://d395-2405-4802-1d73-e0f0-372-5cdb-ec2d-6842.ap.ngrok.io/api/v1';
   }
 
   final Dio _dio;
@@ -26,41 +29,85 @@ class _SignLanguageService implements SignLanguageService {
       r'Content-Type': 'application/octet-stream'
     };
     _headers.removeWhere((k, v) => v == null);
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
-        Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: 'application/octet-stream',
-                responseType: ResponseType.bytes)
-            .compose(_dio.options, '/convertToSign',
-                queryParameters: queryParameters, data: _data)
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/octet-stream',
+      responseType: ResponseType.bytes,
+    )
+            .compose(
+              _dio.options,
+              '/convertToSign',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!.cast<int>();
     return value;
   }
 
   @override
-  Future<List<int>> getSignLanguageVideoFromImg(fileUpload) async {
+  Future<ImageToSign> getSignLanguageVideoFromImg(fileUpload) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{
-      r'Content-Type': 'application/octet-stream'
-    };
-    _headers.removeWhere((k, v) => v == null);
-    final _data = fileUpload;
-    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
-        Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: 'application/octet-stream',
-                responseType: ResponseType.bytes)
-            .compose(_dio.options, '/convertImageToSign',
-                queryParameters: queryParameters, data: _data)
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'fileUpload',
+      MultipartFile.fromFileSync(
+        fileUpload.path,
+        filename: fileUpload.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ImageToSign>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              '/convertImageToSign',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!.cast<int>();
+    final value = ImageToSign.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ImageToSign> sign2text(fileUpload) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'fileUpload',
+      MultipartFile.fromFileSync(
+        fileUpload.path,
+        filename: fileUpload.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ImageToSign>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              '/sign2text',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ImageToSign.fromJson(_result.data!);
     return value;
   }
 

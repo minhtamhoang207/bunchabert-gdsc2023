@@ -11,7 +11,6 @@ import '../../../../domain/usecases/auth_usecase.dart';
 import '../../../../config/routes/app_pages.dart';
 
 class SignUpController extends GetxController {
-
   AuthUseCase authUseCase;
   SignUpController({required this.authUseCase});
 
@@ -26,25 +25,22 @@ class SignUpController extends GetxController {
   }
 
   register() async {
-    try{
-      if(email.text.isEmail && password.text == confirmPassword.text){
+    try {
+      if (email.text.isEmail && password.text == confirmPassword.text) {
         BotToast.showLoading();
-        await authUseCase.register(userAuth: UserAuth(
-            username: userName.text,
-            password: password.text,
-            email: email.text
-        ));
+        await authUseCase.register(
+            userAuth: UserAuth(
+                username: userName.text,
+                password: password.text,
+                email: email.text));
         BotToast.closeAllLoading();
         Get.offAllNamed(Routes.DASH_BOARD);
       }
-    } on ErrorEntity catch (e){
+    } on ErrorEntity catch (e) {
       BotToast.showSimpleNotification(
-        title: e.message,
-        titleStyle: const TextStyle(
-          color: Colors.white
-        ),
-        backgroundColor: Colors.red
-      );
+          title: e.message,
+          titleStyle: const TextStyle(color: Colors.white),
+          backgroundColor: Colors.red);
       BotToast.closeAllLoading();
     }
   }

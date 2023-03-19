@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base_response.dart';
 
@@ -35,18 +35,22 @@ mixin _$BaseResponse {
 abstract class $BaseResponseCopyWith<$Res> {
   factory $BaseResponseCopyWith(
           BaseResponse value, $Res Function(BaseResponse) then) =
-      _$BaseResponseCopyWithImpl<$Res>;
+      _$BaseResponseCopyWithImpl<$Res, BaseResponse>;
+  @useResult
   $Res call({String? message, dynamic data, dynamic meta, DateTime? time});
 }
 
 /// @nodoc
-class _$BaseResponseCopyWithImpl<$Res> implements $BaseResponseCopyWith<$Res> {
+class _$BaseResponseCopyWithImpl<$Res, $Val extends BaseResponse>
+    implements $BaseResponseCopyWith<$Res> {
   _$BaseResponseCopyWithImpl(this._value, this._then);
 
-  final BaseResponse _value;
   // ignore: unused_field
-  final $Res Function(BaseResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
@@ -55,23 +59,23 @@ class _$BaseResponseCopyWithImpl<$Res> implements $BaseResponseCopyWith<$Res> {
     Object? time = freezed,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      meta: meta == freezed
+      meta: freezed == meta
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      time: time == freezed
+      time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -82,20 +86,19 @@ abstract class _$$_BaseResponseCopyWith<$Res>
           _$_BaseResponse value, $Res Function(_$_BaseResponse) then) =
       __$$_BaseResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? message, dynamic data, dynamic meta, DateTime? time});
 }
 
 /// @nodoc
 class __$$_BaseResponseCopyWithImpl<$Res>
-    extends _$BaseResponseCopyWithImpl<$Res>
+    extends _$BaseResponseCopyWithImpl<$Res, _$_BaseResponse>
     implements _$$_BaseResponseCopyWith<$Res> {
   __$$_BaseResponseCopyWithImpl(
       _$_BaseResponse _value, $Res Function(_$_BaseResponse) _then)
-      : super(_value, (v) => _then(v as _$_BaseResponse));
+      : super(_value, _then);
 
-  @override
-  _$_BaseResponse get _value => super._value as _$_BaseResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
@@ -104,19 +107,19 @@ class __$$_BaseResponseCopyWithImpl<$Res>
     Object? time = freezed,
   }) {
     return _then(_$_BaseResponse(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      meta: meta == freezed
+      meta: freezed == meta
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      time: time == freezed
+      time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -151,29 +154,32 @@ class _$_BaseResponse implements _BaseResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BaseResponse &&
-            const DeepCollectionEquality().equals(other.message, message) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality().equals(other.meta, meta) &&
-            const DeepCollectionEquality().equals(other.time, time));
+            (identical(other.time, time) || other.time == time));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(message),
+      message,
       const DeepCollectionEquality().hash(data),
       const DeepCollectionEquality().hash(meta),
-      const DeepCollectionEquality().hash(time));
+      time);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_BaseResponseCopyWith<_$_BaseResponse> get copyWith =>
       __$$_BaseResponseCopyWithImpl<_$_BaseResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BaseResponseToJson(this);
+    return _$$_BaseResponseToJson(
+      this,
+    );
   }
 }
 

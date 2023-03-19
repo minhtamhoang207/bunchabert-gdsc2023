@@ -8,8 +8,6 @@ import '../../learning/views/learning_view.dart';
 import '../../profile/views/profile_view.dart';
 
 class DashBoardController extends GetxController {
-
-
   final RxInt pageIndex = 0.obs;
   final GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
   final List<Widget> pages = const [

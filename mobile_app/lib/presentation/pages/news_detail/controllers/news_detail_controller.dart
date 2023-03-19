@@ -8,7 +8,6 @@ import 'package:magic_sign/data/models/news.dart';
 import '../../../../domain/usecases/sign_language_usecase.dart';
 
 class NewsDetailController extends GetxController {
-
   NewsDetailController({required this.signLanguageUseCases});
 
   SignLanguageUseCases signLanguageUseCases;
@@ -23,6 +22,10 @@ class NewsDetailController extends GetxController {
 
   RxStatus getVideoStatus = RxStatus.empty();
 
+  RxBool showVideo = RxBool(false);
+
+  RxString highlightText = RxString('');
+
   @override
   void onInit() {
     super.onInit();
@@ -32,16 +35,17 @@ class NewsDetailController extends GetxController {
     try {
       getVideoStatus = RxStatus.loading();
       BotToast.showLoading();
-      bytes.value = await signLanguageUseCases.getSignVideo(content: txtController.text);
-      print(bytes.value);
+      bytes.value =
+          await signLanguageUseCases.getSignVideo(content: txtController.text);
       BotToast.closeAllLoading();
       getVideoStatus = RxStatus.success();
-    } catch (e){
+    } catch (e) {
       log(e.toString());
       bytes.value = [];
       BotToast.closeAllLoading();
       getVideoStatus = RxStatus.error('An error occurred');
-  }}
+    }
+  }
 
   @override
   void onReady() {

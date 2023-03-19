@@ -1,4 +1,3 @@
-
 import '../../data/models/news.dart';
 
 abstract class NewsRepository {

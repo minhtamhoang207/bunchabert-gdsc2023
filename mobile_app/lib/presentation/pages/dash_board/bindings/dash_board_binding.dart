@@ -32,17 +32,21 @@ class DashBoardBinding extends Bindings {
       () => ExploreController(newsUseCases: Get.find()),
     );
     Get.lazyPut<LearningController>(
-          () => LearningController(courseUseCase: Get.find()),
+      () => LearningController(courseUseCase: Get.find()),
     );
     Get.lazyPut<ProfileController>(
-          () => ProfileController(),
+      () => ProfileController(),
     );
 
     Get.lazyPut(() => NewsRepoImpl(newsService: NewsService(Get.find<Dio>())));
     Get.lazyPut(() => NewsUseCases(newsRepository: Get.find<NewsRepoImpl>()));
-    Get.lazyPut(() => SignLanguageRepoImpl(signLanguageService: SignLanguageService(Get.find<Dio>())));
-    Get.lazyPut(() => SignLanguageUseCases(signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
-    Get.lazyPut(() => CourseRepoImpl(courseService: CourseService(Get.find<Dio>())));
-    Get.lazyPut(() => CourseUseCase(courseRepository: Get.find<CourseRepoImpl>()));
+    Get.lazyPut(() => SignLanguageRepoImpl(
+        signLanguageService: SignLanguageService(Get.find<Dio>())));
+    Get.lazyPut(() => SignLanguageUseCases(
+        signLanguageRepository: Get.find<SignLanguageRepoImpl>()));
+    Get.lazyPut(
+        () => CourseRepoImpl(courseService: CourseService(Get.find<Dio>())));
+    Get.lazyPut(
+        () => CourseUseCase(courseRepository: Get.find<CourseRepoImpl>()));
   }
 }

@@ -11,32 +11,32 @@ class DashBoardView extends GetView<DashBoardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Obx(()=>CurvedNavigationBar(
-          key: controller.bottomNavigationKey,
-          index: controller.pageIndex.value,
-          height: 60.0,
-          items: [
-            _bottomBarButton(Assets.svg.icHome, 0),
-            _bottomBarButton(Assets.svg.icCompass, 1),
-            _bottomBarButton(Assets.svg.icCamera, 2),
-            _bottomBarButton(Assets.svg.icNews, 3),
-            _bottomBarButton(Assets.svg.icPerson, 4)
-          ],
-          color: const Color(0xFFEEEEEE),
-          buttonBackgroundColor: const Color(0xFF326273),
-          backgroundColor: Colors.transparent,
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 300),
-          onTap: (index) {
-            if(index == 3){
-              Get.find<LearningController>().onInit();
-              controller.setIndex(index: index);
-            } else {
-              controller.setIndex(index: index);
-            }
-          },
-          letIndexChange: (index) => true,
-        )),
+        bottomNavigationBar: Obx(() => CurvedNavigationBar(
+              key: controller.bottomNavigationKey,
+              index: controller.pageIndex.value,
+              height: 60.0,
+              items: [
+                _bottomBarButton(Assets.svg.icHome, 0),
+                _bottomBarButton(Assets.svg.icCompass, 1),
+                _bottomBarButton(Assets.svg.icCamera, 2),
+                _bottomBarButton(Assets.svg.icNews, 3),
+                _bottomBarButton(Assets.svg.icPerson, 4)
+              ],
+              color: const Color(0xFFEEEEEE),
+              buttonBackgroundColor: const Color(0xFF326273),
+              backgroundColor: Colors.transparent,
+              animationCurve: Curves.easeInOut,
+              animationDuration: const Duration(milliseconds: 300),
+              onTap: (index) {
+                if (index == 3) {
+                  Get.find<LearningController>().onInit();
+                  controller.setIndex(index: index);
+                } else {
+                  controller.setIndex(index: index);
+                }
+              },
+              letIndexChange: (index) => true,
+            )),
         body: Obx(() => controller.pages[controller.pageIndex.value]));
   }
 }

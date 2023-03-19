@@ -94,7 +94,8 @@ class CourseDetail extends StatelessWidget {
                     const Gap(20),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.QUIZ, arguments: controller.course.quiz);
+                        Get.toNamed(Routes.QUIZ,
+                            arguments: controller.course.quiz);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -157,7 +158,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
             Container(
                 width: Get.width,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.white,
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(controller.course.thumbnail ?? '')),

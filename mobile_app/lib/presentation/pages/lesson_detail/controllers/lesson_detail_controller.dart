@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:magic_sign/data/models/course.dart';
 
 class LessonDetailController extends GetxController {
-
   final Lesson lesson = Get.arguments;
 
   @override

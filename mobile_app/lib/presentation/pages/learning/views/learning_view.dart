@@ -12,13 +12,13 @@ class LearningView extends GetView<LearningController> {
     return SafeArea(
       child: Scaffold(
         body: Scrollable(
-          viewportBuilder: (BuildContext context, ViewportOffset position)
-            => Column(
-                children: [
-                  _header(),
-                  _divider(),
-                  controller.obx(
-                      (state) => Expanded(
+          viewportBuilder: (BuildContext context, ViewportOffset position) =>
+              Column(
+            children: [
+              _header(),
+              _divider(),
+              controller.obx(
+                  (state) => Expanded(
                         child: ListView.builder(
                           itemCount: controller.course.value.length,
                           itemBuilder: (context, index) {
@@ -26,12 +26,12 @@ class LearningView extends GetView<LearningController> {
                           },
                         ),
                       ),
-                      onLoading: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 50),
-                            child: CircularProgressIndicator(),
-                          )),
-                      onError: (e) => Expanded(
+                  onLoading: const Center(
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: CircularProgressIndicator(),
+                  )),
+                  onError: (e) => Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,8 +42,8 @@ class LearningView extends GetView<LearningController> {
                           ],
                         ),
                       ))
-                ],
-              ),
+            ],
+          ),
         ),
       ),
     );
@@ -99,6 +99,7 @@ Widget course(int index) {
               height: Get.width / 2.5,
               width: Get.width / 2.5,
               decoration: BoxDecoration(
+                  color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),

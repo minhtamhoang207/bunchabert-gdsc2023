@@ -15,7 +15,7 @@ class LessonDetailView extends GetView<LessonDetailController> {
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: const Color(0xFF4C6ED7),
-            title: Text(controller.lesson.word??''),
+            title: Text(controller.lesson.word ?? ''),
           ),
           body: const MemoryPlayerPage()),
     );
@@ -37,9 +37,7 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
   void initState() {
     BetterPlayerConfiguration betterPlayerConfiguration =
         const BetterPlayerConfiguration(
-      aspectRatio: 16 / 9,
-      fit: BoxFit.contain,
-    );
+            aspectRatio: 16 / 9, fit: BoxFit.contain, autoPlay: true);
     _betterPlayerController = BetterPlayerController(betterPlayerConfiguration);
     _setupDataSource();
     _betterPlayerController.play();
@@ -47,9 +45,8 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
   }
 
   void _setupDataSource() async {
-    BetterPlayerDataSource dataSource = BetterPlayerDataSource.network(
-      controller.lesson.attachment??''
-    );
+    BetterPlayerDataSource dataSource =
+        BetterPlayerDataSource.network(controller.lesson.attachment ?? '');
     _betterPlayerController.setupDataSource(dataSource);
   }
 
@@ -71,24 +68,22 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
                 const Gap(10),
                 Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                            controller.lesson.word??'',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)),
-                      ],
-                    )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(controller.lesson.word ?? '',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20)),
+                  ],
+                )),
                 const Gap(15),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Text(
-                controller.lesson.meaning??'',
+            child: Text(controller.lesson.meaning ?? '',
                 style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -97,7 +92,7 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
         ],
       ),
       bottomNavigationBar: InkWell(
-        onTap: ()=> Get.back(),
+        onTap: () => Get.back(),
         child: Container(
           margin: const EdgeInsets.all(20),
           padding: const EdgeInsets.symmetric(vertical: 13),
@@ -109,11 +104,7 @@ class _MemoryPlayerPageState extends State<MemoryPlayerPage> {
             'Go back',
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20
-            ),
-
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
       ),

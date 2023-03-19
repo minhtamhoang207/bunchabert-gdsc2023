@@ -46,10 +46,10 @@ class LoginController extends GetxController {
   Future<void> signInWithGoogle() async {
     try {
       await Get.find<GoogleSignIn>().signIn();
-      if(await Get.find<GoogleSignIn>().isSignedIn()) {
+      if (await Get.find<GoogleSignIn>().isSignedIn()) {
         Get.offAllNamed(Routes.DASH_BOARD);
       }
-    } catch (e){
+    } catch (e) {
       BotToast.showText(text: e.toString());
     }
   }

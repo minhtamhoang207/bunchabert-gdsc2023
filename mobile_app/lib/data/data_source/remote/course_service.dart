@@ -11,5 +11,4 @@ abstract class CourseService {
 
   @GET('/courses')
   Future<List<Course>> getCourses();
-
 }

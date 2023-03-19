@@ -5,10 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class DependencyInjection {
   static Future<void> init() async {
-    await Get.putAsync(()=> SharedPreferences.getInstance());
+    await Get.putAsync(() => SharedPreferences.getInstance());
     Get.put(RestClient().init());
     Get.put(GoogleSignIn());
-    // await Get.putAsync(() => RestClient().init());
   }
 }
-

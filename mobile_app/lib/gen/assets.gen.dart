@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 
@@ -18,6 +18,9 @@ class $AssetsImageGen {
   /// File path: assets/image/ic_launcher.jpg
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/image/ic_launcher.jpg');
+
+  /// File path: assets/image/ic_listening.json
+  String get icListening => 'assets/image/ic_listening.json';
 
   /// File path: assets/image/ic_sign.png
   AssetGenImage get icSign => const AssetGenImage('assets/image/ic_sign.png');
@@ -49,13 +52,26 @@ class $AssetsImageGen {
 
   /// File path: assets/image/intro_3.png
   AssetGenImage get intro3 => const AssetGenImage('assets/image/intro_3.png');
+
+  /// List of all assets
+  List<dynamic> get values => [
+        icDone,
+        icLauncher,
+        icListening,
+        icSign,
+        imgFeature,
+        imgImageToSign,
+        imgLearning,
+        imgNews,
+        imgSignLanguage,
+        intro1,
+        intro2,
+        intro3
+      ];
 }
 
 class $AssetsSvgGen {
   const $AssetsSvgGen();
-
-  /// File path: assets/svg/huawei_logo.svg
-  String get huaweiLogo => 'assets/svg/huawei_logo.svg';
 
   /// File path: assets/svg/ic_camera.svg
   String get icCamera => 'assets/svg/ic_camera.svg';
@@ -80,13 +96,21 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/intro_3.svg
   String get intro3 => 'assets/svg/intro_3.svg';
+
+  /// List of all assets
+  List<String> get values =>
+      [icCamera, icCompass, icHome, icNews, icPerson, intro1, intro2, intro3];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsImageGen image = $AssetsImageGen();
+  static const String speechToText = 'assets/speech_to_text.json';
   static const $AssetsSvgGen svg = $AssetsSvgGen();
+
+  /// List of all assets
+  List<String> get values => [speechToText];
 }
 
 class AssetGenImage {
@@ -146,6 +170,8 @@ class AssetGenImage {
       cacheHeight: cacheHeight,
     );
   }
+
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 
