@@ -8,7 +8,7 @@ Our team consists of 4 members:
 
 1. Tran Quang Hiep - Backend, AI
 2. Hoang Minh Tam - Frontent, UX/UI
-3. Do Duy Anh - Backeend, DevOps
+3. Do Duy Anh - Backend, DevOps
 4. Dong Huu Hieu - Backend, DevOps
 
 ## Main feature
